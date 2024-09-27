@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="css/style.css">
-    <title>To-Do List</title>
-    <h1 class="maintext">Хотите быть эффективнее? Тогда пора планировать свои задачи!</h1>
-</head>
-<body class="body">
-    <p class="maintext">Какие же планы на сегодня?</p>
-    <input class="maintext" type="text" placeholder="Введите свою задачу...">
-    <button class="button">Добавить</button>
-    <script src="js/script.js"></script>
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>To-Do list</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Список задач</h1>
+        <div class="task-wrapper">
+            <div  class="task-input-contaier">
+                <input type="text" placeholder="Введите задачу..." id="task-input">
+                <button id="add-task-btn">Добавить</button>
+            </div>
+            <!--Список задач, который был создан добавляется сюда-->
+            <div id="task-list"></div>
+        </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>
