@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Функция для добавления задач
     function addTask() {
-        const taskText = taskInput.ariaValueMax.trim();
+        const taskText = taskInput.value.trim();
         if (taskText === '') return; //Если текст пустой, то ничего не делаем
 
         //Создаем элемент задачи
