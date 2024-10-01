@@ -1,8 +1,21 @@
 <!DOCTYPE html>
-<head>
-    <title>To Do List</title>
-    Welcome to my To-Do List app!
-</head>
-<body>
-
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>To-Do list</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Список задач</h1>
+        <div class="task-wrapper">
+            <div  class="task-input-contaier">
+                <input type="text" placeholder="Введите задачу..." id="task-input">
+                <button id="add-task-btn">Добавить</button>
+            </div>
+            <!--Список задач, который был создан добавляется сюда-->
+            <div id="task-list"></div>
+        </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>
