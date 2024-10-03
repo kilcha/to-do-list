@@ -5,15 +5,18 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
         <title>To-Do list</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
         <h1>Список задач</h1>
-        <div class="task-wrapper">
-            <div  class="task-input-contaier">
-                <input type="text" placeholder="Введите задачу..." id="task-input">
-                <button id="add-task-btn">Добавить</button>
+        <div class="task-form">
+            <div class="task-input-contaier">
+                <input type="text" id="taskTitle" placeholder="Заголовок задачи">
+                <textarea id="taskDescription" placeholder="Описание задачи..."></textarea>
+                <input type="date" id="taskDate">
+                <input type="time" id="taskTime">
+                <button id="addTaskBtn">Добавить</button>
             </div>
-            <!--Список задач, который был создан добавляется сюда-->
             <div id="task-list"></div>
         </div>
         <script src="js/script.js"></script>
