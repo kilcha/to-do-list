@@ -1,9 +1,11 @@
 document.getElementById("addTaskBtn").addEventListener("click", function () {
+    //Получаем все элементы
     const taskTitle = document.getElementById("taskTitle").value;
     const taskDescription = document.getElementById("taskDescription").value;
     const taskDate = document.getElementById("taskDate").value;
     const taskTime = document.getElementById("taskTime").value;
 
+    //Создаем условие при котором поля должны быть заполнены, иначе выведет предупреждение
     if (taskTitle.trim() !== "" && taskDescription.trim() !== "" && taskDate !== "" && taskTime !== "") {
         const taskList = document.getElementById("task-list");
 
@@ -26,18 +28,21 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         dateTimeElement.className = "task-date-time";
         dateTimeElement.textContent = `Дата: ${taskDate}, Время: ${taskTime}`;
 
-        //Поля для ввода редактирования
+        //Поле ввода заголовка
         const titleInput = document.createElement("input");
         titleInput.type = "text"
         titleInput.value = taskTitle;
 
+        //Поле ввода для описания
         const descriptionInput = document.createElement("textarea");
         descriptionInput.value = taskDescription;
 
+        //Поле ввода для даты
         const dateInput = document.createElement("input");
         dateInput.type = "date";
         dateInput.value = taskDate;
 
+        //Поле ввода для времени
         const timeInput = document.createElement("input");
         timeInput.type = "time";
         timeInput.value = taskTime;
@@ -99,13 +104,13 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         taskItem.appendChild(titleElement);
         taskItem.appendChild(descriptionElement);
         taskItem.appendChild(dateTimeElement);
-        taskItem.appendChild(statusElement);
-        taskItem.appendChild(iconsElement);
         taskItem.appendChild(titleInput);
         taskItem.appendChild(descriptionInput);
         taskItem.appendChild(dateInput);
         taskItem.appendChild(timeInput);
-
+        taskItem.appendChild(statusElement);
+        taskItem.appendChild(iconsElement);
+        
         //Добавление новой задачи в список
         taskList.appendChild(taskItem);
 
