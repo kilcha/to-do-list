@@ -109,11 +109,11 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         taskItem.appendChild(dateInput);
         taskItem.appendChild(timeInput);
         taskItem.appendChild(statusElement);
-
+        taskItem.appendChild(iconsElement);
+        
         //Добавление новой задачи в список
         taskList.appendChild(taskItem);
-        taskList.appendChild(iconsElement); //Чтобы вывести иконки в не рамки задачи, потому что накладывается сам на себяы
-        
+
         //Очистка полей после добавления задачи
         document.getElementById("taskTitle").value = "";
         document.getElementById("taskDescription").value = "";
