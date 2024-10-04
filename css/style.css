@@ -84,14 +84,15 @@ body {
 
 .task-status {
     font-size: 12px;
-    color: #078d00;
+    color: #006468;
     margin-top: 10px;
 }
 
 .task-icons {
-    position: absolute;
-    right: 10px;
-    top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .task-icons i {
