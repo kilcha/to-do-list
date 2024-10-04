@@ -138,6 +138,63 @@ body {
     display: none;
 }
 
+.filter-container {
+    margin-top: 20px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    text-align: left;
+}
+
+#filterBtn {
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+#filterMenu {
+    display: none;
+    background-color: rgb(58, 58, 58);
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+}
+
+.filter-item {
+    padding: 10px;
+    border-bottom: 1px solid #3a3a3a;
+    cursor: pointer;
+}
+
+.filter-item:last-child {
+    border-bottom: none;
+}
+
+.filter-item:hover {
+    background-color: #111111;
+    border-radius: 5px;
+}
+
+.checkmark {
+    float: right;
+    color: green;
+    visibility: hidden;
+}
+
+.filter-item.selected .checkmark {
+    visibility: visible;
+}
+
 @keyframes slideDown {
     0% {
         opacity: 0;
