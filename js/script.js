@@ -35,7 +35,12 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         descriptionInput.value = taskDescription;
 
         const dateInput = document.createElement("input");
-        
+        dateInput.type = "date";
+        dateInput.value = taskDate;
+
+        const timeInput = document.createElement("input");
+        timeInput.type = "time";
+        timeInput.value = taskTime;
 
         //Элемент для пользовательского статуса
         const statusElement = document.createElement("div");
@@ -57,7 +62,14 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         const editIcon = document.createElement("i");
         editIcon.className = "fas fa-pencil-alt";
         editIcon.addEventListener("click", function() {
-            editTask(taskItem, titleElement, descriptionElement, dateTimeElement);
+            if (taskItem.classList.contains("edit-mode")) {
+                titleElement.textContent = titleInput.value;
+                descriptionElement.textContent = descriptionInput.value;
+                dateTimeElement.textContent = `Дата: ${dateInput.value}, Время: ${timeInput.value}`;
+                taskItem.classList.remove("edit-mode");
+            } else {
+                taskItem.classList.add("edit-mode");
+            }
         });
 
         //Кнопка для удаления задачи
@@ -89,6 +101,10 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         taskItem.appendChild(dateTimeElement);
         taskItem.appendChild(statusElement);
         taskItem.appendChild(iconsElement);
+        taskItem.appendChild(titleInput);
+        taskItem.appendChild(descriptionInput);
+        taskItem.appendChild(dateInput);
+        taskItem.appendChild(timeInput);
 
         //Добавление новой задачи в список
         taskList.appendChild(taskItem);
@@ -101,29 +117,5 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
 
     } else {
         alert("Заполните все поля!");
-    }
-
-    //Функция для редактирования задачи
-    function editTask(taskItem, titleElement, descriptionElement, dateTimeElement) {
-        const newTitle = prompt("Редактировать заголовок задачи:", titleElement.textContent);
-        const newDescription = prompt("Редактировать описание задачи:", descriptionElement.textContent);
-        const newDate = prompt("Редактировать дату (формат YYYY-MM-DD):", dateTimeElement.textContent.split(", ")[0].slice(6));
-        const newTime = prompt("Редактировать время (формат HH:MM):", dateTimeElement.textContent.split(", ")[1].slice(7));
-
-        if (newTitile !== null && newTitle.trim() !== "") {
-            titleElement.textContent = newTitle;
-        }
-
-        if (newDescription !== null && newDescription.trim() !== "") {
-            descriptionElement.textContent = newDescription;
-        }
-
-        if (newDate !== null && newDate.trim() !== "") {
-            dateTimeElement.textContent = `Дата: ${newDate}, Время: ${newTime}`
-        }
-
-        if (newTime !== null && newTime.trim() !== "") {
-            dateTimeElement.textContent = `Дата: ${newDate}, Время: ${newTime}`
-        }
     }
 });
