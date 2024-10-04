@@ -1,88 +1,3 @@
-// //Получаем элементы
-// const taskInput = document.getElementById('task-input');
-// const addTaskBtn = document.getElementById('add-task-btn');
-// const taskList = document.getElementById('task-list');
-
-// //Обработчик нажатия на кнопку "Добавить"
-// addTaskBtn.addEventListener('click', addTask);
-
-// function addTaskVisible() {
-//     const taskList = document.getElementById("task-list");
-//     if (taskList.children.length === 0) {
-//         taskList.style.display = "none";
-//     } else {
-//         taskList.style.display = "block";
-//     }
-// }
-
-
-// //Функция для добавления задач
-// function addTask() {
-//     const taskText = taskInput.value.trim();
-//     if (taskText === '') return; //Если текст пустой, то ничего не делаем
-
-//     //Создаем элемент задачи
-//     const taskItem = document.createElement('div')
-//     taskItem.classList.add('task-item');
-
-//     //Текст задачи
-//     const taskContent = document.createElement('span')
-//     taskContent.textContent = taskText;
-
-//     //Блок с кнопками
-//     const taskButtons = document.createElement('div');
-//     taskButtons.classList.add('task-buttons')
-
-//     //Кнопка "Удалить"
-//     const deleteBtn = document.createElement('button');
-//     deleteBtn.innerHTML = '&#10060'; //Значок крестика
-//     deleteBtn.addEventListener('click', () => taskItem.remove());
-
-//     //Кнопка "Завершить"
-//     const completeBtn = document.createElement('button');
-//     completeBtn.innerHTML = '&#10003'; //Значок галочки
-//     completeBtn.addEventListener('click', () => {
-//         taskContent.classList.toggle('task-completed');
-//     });
-
-//     //Кнопка "Пользовательский статус"
-//     const statusBtn = document.createElement('button');
-//     statusBtn.innerHTML = '&#9776'; //Значок трех линии
-//     statusBtn.addEventListener('click', () => {
-//         const statusInput = document.createElement('input');
-//         statusInput.type = 'text';
-//         statusInput.placeholder = 'Введите статус...';
-//         statusInput.classList.add('status-input');
-//         taskItem.appendChild(statusInput);
-//         statusInput.addEventListener('blur', () => {
-//             const statusText = document.createElement('div');
-//             statusText.textContent = statusInput.value;
-//             statusText.classList.add('custom-status');
-//             statusInput.remove();
-//             taskItem.appendChild(statusText);
-//         });
-//     });
-
-//     //Добавляет кнопки в блок кнопок
-//     taskButtons.appendChild(completeBtn);
-//     taskButtons.appendChild(statusBtn);
-//     taskButtons.appendChild(deleteBtn);
-
-//     //Добавляем текст и кнопки в задачу
-//     taskItem.appendChild(taskContent);
-//     taskItem.appendChild(taskButtons);
-
-//     //Добавляем задачу в список
-//     taskList.appendChild(taskItem);
-    
-//     //Проверяем наличие задач в списке, чтобы вывести их в отдельный блок
-//     addTaskVisible();
-
-//     //Очищаем поле ввода
-//     taskInput.value = '';
-// }
-
-
 document.getElementById("addTaskBtn").addEventListener("click", function () {
     const taskTitle = document.getElementById("taskTitle").value;
     const taskDescription = document.getElementById("taskDescription").value;
@@ -92,54 +7,93 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
     if (taskTitle.trim() !== "" && taskDescription.trim() !== "" && taskDate !== "" && taskTime !== "") {
         const taskList = document.getElementById("task-list");
 
+        //Создание элемента для новой задачи
         const taskItem = document.createElement("div");
         taskItem.className = "task-item";
 
+        //Заголовок задачи
         const titleElement = document.createElement("div");
         titleElement.className = "task-title";
         titleElement.textContent = taskTitle;
 
+        //Описание задачи
         const descriptionElement = document.createElement("div");
         descriptionElement.className = "task-description";
         descriptionElement.textContent = taskDescription;
 
+        //Дата и время задачи
         const dateTimeElement = document.createElement("div");
         dateTimeElement.className = "task-date-time";
         dateTimeElement.textContent = `Дата: ${taskDate}, Время: ${taskTime}`;
 
-        //Иконки для редактирования, удаления и завершения задач
+        //Поля для ввода редактирования
+        const titleInput = document.createElement("input");
+        titleInput.type = "text"
+        titleInput.value = taskTitle;
+
+        const descriptionInput = document.createElement("textarea");
+        descriptionInput.value = taskDescription;
+
+        const dateInput = document.createElement("input");
+        
+
+        //Элемент для пользовательского статуса
+        const statusElement = document.createElement("div");
+        statusElement.className = "task-status"
+        statusElement.textContent = `Статус: Без статуса`
+
+        //Создание элемента для кнопок
         const iconsElement = document.createElement("div");
         iconsElement.className = "task-icons";
 
+        //Кнопка завершения задачи
         const completeIcon = document.createElement("i");
         completeIcon.className = "fas fa-check";
         completeIcon.addEventListener("click", function() {
             taskItem.classList.toggle("completed");
         });
 
+        //Кнопка редактирования задачи
         const editIcon = document.createElement("i");
         editIcon.className = "fas fa-pencil-alt";
         editIcon.addEventListener("click", function() {
             editTask(taskItem, titleElement, descriptionElement, dateTimeElement);
         });
 
+        //Кнопка для удаления задачи
         const deleteIcon = document.createElement("i");
         deleteIcon.className = "fas fa-trash";
         deleteIcon.addEventListener("click", function() {
             taskList.removeChild(taskItem);
         });
 
+        //Кнопка редактирования и создания пользовательского статуса
+        const statusIcon = document.createElement("i");
+        statusIcon.className = "fas fa-bars";
+        statusIcon.addEventListener("click", function() {
+            const newStatus = prompt("Введите новый статус:", statusElement.textContent.replace("Статус: ", ""));
+            if (newStatus !== null && newStatus.trim() !== "") {
+                statusElement.textContent = `Статус: ${newStatus}`;
+            }
+        });
+
+        //Добавление иконок
         iconsElement.appendChild(completeIcon);
         iconsElement.appendChild(editIcon);
         iconsElement.appendChild(deleteIcon);
+        iconsElement.appendChild(statusIcon)
 
+        //Добавление элементов в блок задачи
         taskItem.appendChild(titleElement);
         taskItem.appendChild(descriptionElement);
         taskItem.appendChild(dateTimeElement);
+        taskItem.appendChild(statusElement);
         taskItem.appendChild(iconsElement);
 
+        //Добавление новой задачи в список
         taskList.appendChild(taskItem);
 
+        //Очистка полей после добавления задачи
         document.getElementById("taskTitle").value = "";
         document.getElementById("taskDescription").value = "";
         document.getElementById("taskDate").value = "";
@@ -149,6 +103,7 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         alert("Заполните все поля!");
     }
 
+    //Функция для редактирования задачи
     function editTask(taskItem, titleElement, descriptionElement, dateTimeElement) {
         const newTitle = prompt("Редактировать заголовок задачи:", titleElement.textContent);
         const newDescription = prompt("Редактировать описание задачи:", descriptionElement.textContent);

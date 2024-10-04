@@ -16,7 +16,7 @@ body {
     border: solid #00f2ff;
     padding: 20px;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -71,26 +71,21 @@ body {
 }
 
 .task-item.completed {
-    background-color: #333;
+    background-color: #004704;
     text-decoration: line-through;
 }
 
-.task-title {
-    font-weight: bold;
+.task-title,
+.task-description,
+.task-date-time {
+    display: block;
     margin-bottom: 5px;
 }
 
-.task-description {
-    font-size: 14px;
-    color: white;
-}
-
-.task-date-time {
-    font-size: 14px;
-    color: white;
-    position: absolute;
-    right: 50px;
-    top: 10px;
+.task-status {
+    font-size: 12px;
+    color: #078d00;
+    margin-top: 10px;
 }
 
 .task-icons {
@@ -106,7 +101,34 @@ body {
 }
 
 .task-icons i:hover {
-    color: #ddd;
+    color: #bdbdbd;
+}
+
+.task-item input[type="text"],
+.task-item textarea,
+.task-item input[type="date"],
+.task-item input[type="time"] {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    display: none;
+}
+
+.task-item.edit-mode input[type="text"],
+.task-item.edit-mode textarea,
+.task-item.edit-mode input[type="date"],
+.task-item.edit-mode input[type="time"] {
+    display: block;
+}
+
+.task-item.edit-mode .task-title,
+.task-item.edit-mode .task-description,
+.task-item.edit-mode .task-date-time {
+    display: none;
 }
 
 @keyframes slideDown {
