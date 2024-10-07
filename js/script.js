@@ -37,6 +37,8 @@ function addTaskToDOM(task) {
     //Создание элемента для новой задачи
     const taskItem = document.createElement("div");
     taskItem.className = "task-item";
+    taskItem.dataset.status = task.status;
+    taskItem.dataset.completed = task.completed;
 
     //Заголовок задачи
     const titleElement = document.createElement("div");
@@ -86,20 +88,15 @@ function addTaskToDOM(task) {
     completeIcon.className = "fas fa-check";
     completeIcon.addEventListener("click", function() {
         taskItem.classList.toggle("completed");
+        task.completed = taskItem.classList.contains("completed");
+        updateLocalStorage();
     });
 
     //Кнопка редактирования задачи
     const editIcon = document.createElement("i");
     editIcon.className = "fas fa-pencil-alt";
     editIcon.addEventListener("click", function() {
-        if (taskItem.classList.contains("edit-mode")) {
-            titleElement.textContent = titleInput.value;
-            descriptionElement.textContent = descriptionInput.value;
-            dateTimeElement.textContent = `Дата: ${dateInput.value}, Время: ${timeInput.value}`;
-            taskItem.classList.remove("edit-mode");
-        } else {
-            taskItem.classList.add("edit-mode");
-        }
+        editTask(task, taskItem, titleElement, descriptionElement, dateTimeElement, statusElement);
     });
 
     //Кнопка для удаления задачи
@@ -107,6 +104,7 @@ function addTaskToDOM(task) {
     deleteIcon.className = "fas fa-trash";
     deleteIcon.addEventListener("click", function() {
         taskList.removeChild(taskItem);
+        removeTaskFromLocalStorage(task);
     });
 
     //Кнопка редактирования и создания пользовательского статуса
@@ -115,7 +113,10 @@ function addTaskToDOM(task) {
     statusIcon.addEventListener("click", function() {
         const newStatus = prompt("Введите новый статус:", statusElement.textContent.replace("Статус: ", ""));
         if (newStatus !== null && newStatus.trim() !== "") {
+            task.status = newStatus;
             statusElement.textContent = `Статус: ${newStatus}`;
+            updateLocalStorage();
+
         }
     });
 
@@ -129,20 +130,13 @@ function addTaskToDOM(task) {
     taskItem.appendChild(titleElement);
     taskItem.appendChild(descriptionElement);
     taskItem.appendChild(dateTimeElement);
-    taskItem.appendChild(titleInput);
-    taskItem.appendChild(descriptionInput);
-    taskItem.appendChild(dateInput);
-    taskItem.appendChild(timeInput);
     taskItem.appendChild(statusElement);
     taskItem.appendChild(iconsElement);
     
     //Добавление новой задачи в список
     taskList.appendChild(taskItem);
 
-}
-
-//---------------------------
-        
+}       
 
 function saveTasksToLocalStorage(task) {
     let task = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -179,3 +173,29 @@ function loadTasks() {
     });
 }
 
+function editTask(task, taskItem, titleElement, descriptionElement, dateTimeElement, statusElement) {
+    const titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.value = task.title;
+    titleElement.textContent = '';
+    titleElement.appendChild(titleInput);
+
+    const descriptionInput = document.createElement("textarea");
+    descriptionElement.value = task.description;
+    descriptionElement.textContent = '';
+    descriptionElement.appendChild.appendChild(descriptionInput);
+
+    const dateInput = document.createElement("input");
+    dateInput.type = "date";
+    dateInput.value = task.date;
+    const timeInput = document.createElement("input");
+    timeInput.type = "time";
+    timeInput.value = task.time;
+    dateTimeElement.textContent = '';
+    dateTimeElement.appendChild(dateInput);
+    dateTimeElement.appendChild(timeInput);
+
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "Сохранить";
+    taskItem.appendChild(saveBtn);
+}
