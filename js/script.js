@@ -124,24 +124,3 @@ document.getElementById("addTaskBtn").addEventListener("click", function () {
         alert("Заполните все поля!");
     }
 });
-
-//Фильтры
-const filterBtn = document.getElementById("filterBtn");
-const filterMenu = document.getElementById("filterMenu");
-
-filterBtn.addEventListener("click", function() {
-    filterMenu.style.display = filterMenu.style.display === "block" ? "none" : "block";
-});
-
-//Логика фильтрации
-document.getElementById("filterCompleted").addEventListener("click", function() {
-    toggleFilter(this, "completed");
-});
-
-document.getElementById("filterIncompleted").addEventListener("click", function() {
-    toggleFilter(this, "incompleted");
-});
-
-document.getElementById("filterStatus").addEventListener("click", function() {
-    toggleFilter(this, "status");
-});
