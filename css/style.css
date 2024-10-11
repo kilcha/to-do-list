@@ -1,141 +1,138 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #222222;
+.container {
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
-    color: white;
-}
-
-.task-form {
-    background-color: black;
-    border: solid #00ff15;
-    padding: 20px;
+    background-color: #333;
     border-radius: 10px;
-    max-width: 700px;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.task-form h2 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.task-form input[type="text"],
-.task-form textarea,
-.task-form input[type="date"],
-.task-form input[type="time"] {
-    width: 100%;
+input, textarea {
+    width: 96%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #111;
+    color: #fff;
 }
 
-.task-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
+input[type="date"], input[type="time"] {
+    width: 49%;
+    display: inline-block;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
     cursor: pointer;
 }
 
-.task-form button:hover {
-    background-color: #218838;
-}
-
-#task-list {
-    margin-top: 20px;
-    max-width: 500px;
-    margin: 20px auto;
+button:hover {
+    background-color: #45a049;
 }
 
 .task-item {
-    background-color: rgb(36, 36, 36);
-    color: white;
-    padding: 15px;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
     border-radius: 10px;
-    border: 2px solid #00ff40;
+    padding: 15px;
+    margin: 15px 0;
     margin-bottom: 10px;
     position: relative;
     animation: slideDown 0.5s ease-in-out;
 }
 
 .task-item.completed .task-title,
-.task-item.completed .task-description,
-.task-item.completed .task-date-time,
-.task-item.completed .task-status {
+.task-item.completed .task-description {
     text-decoration: line-through;
+    color: #888;
 }
 
-.task-item.completed {
-    background-color: #011a00;
-}
-
-.task-title,
-.task-description,
-.task-date-time {
-    display: block;
+.task-title {
+    font-size: 18px;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
-.task-status {
+.task-description {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.task-date-time, .task-status {
     font-size: 12px;
-    color: #006468;
-    margin-top: 10px;
+    margin-bottom: 12px;
+    color: #bbb;
 }
 
 .task-icons {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    gap: 15px;
 }
 
 .task-icons i {
-    color: white;
-    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
     cursor: pointer;
 }
 
 .task-icons i:hover {
-    color: #bdbdbd;
+    color: #4CAF50;
 }
 
-.task-item input[type="text"],
-.task-item textarea,
-.task-item input[type="date"],
-.task-item input[type="time"] {
-    background-color: white;
-    color: black;
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 5px;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    display: none;
+.task-icons .fa-trash:hover {
+    color: #e74c3c;
 }
 
-.task-item.edit-mode input[type="text"],
-.task-item.edit-mode textarea,
-.task-item.edit-mode input[type="date"],
-.task-item.edit-mode input[type="time"] {
+.task-icons .fa-check:hover {
+    color: #2ecc71;
+}
+
+.task-icons .fa-pencil-alt:hover {
+    color: #3498db;
+}
+
+#task-input-container {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    margin-bottom: 20px;
+}
+
+#task-input-container input,
+#task-input-container textarea {
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#addTaskBtn {
     display: block;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.task-item.edit-mode .task-title,
-.task-item.edit-mode .task-description,
-.task-item.edit-mode .task-date-time {
-    display: none;
+#addTaskBtn:hover {
+    background-color: #45a049;
+}
+
+.task-icons .fa-bars:hover {
+    color: #f1c40f;
 }
 
 @keyframes slideDown {
