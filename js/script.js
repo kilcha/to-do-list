@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 date: taskDate,
                 time: taskTime,
                 status: "",
-                completed: false
+                completed: false,
+                edited: false
             };
 
             addTaskToDOM(task);
@@ -160,6 +161,7 @@ function editTask(task, titleElement, descriptionElement, dateTimeElement, statu
     taskItem.appendChild(saveButton);
 
     saveButton.addEventListener("click", function () {
+        task.edited = true;
         task.title = titleInput.value;
         task.description = descriptionInput.value;
         task.date = dateInput.value;
@@ -205,6 +207,8 @@ function reorderTasks() {
     document.getElementById("task-list").innerHTML = "";
     tasks.forEach(task => addTaskToDOM(task));
 }
+
+//Фильтрация задач
 
 // Загрузка задач из localStorage
 function loadTasks() {
