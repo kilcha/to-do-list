@@ -13,6 +13,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container h2 {
+    text-align: center;
+}
+
 input, textarea {
     width: 96%;
     padding: 10px;
