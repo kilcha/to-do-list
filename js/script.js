@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     loadTasks();  // Загружаем задачи из localStorage при загрузке страницы
 
+    const icon = document.createElement("span");
+    icon.textContent = "✔";
+    icon.classList.add("toggle-icon");
+    
+    icon.addEventListener("click", toggleVisibility);
+    document.body.insertBefore(icon, document.body.firstChild);
+
     // Добавление новой задачи
     document.getElementById("addTaskBtn").addEventListener("click", function () {
         const taskTitle = document.getElementById("taskTitle").value;
@@ -17,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 time: taskTime,
                 status: "",
                 completed: false,
-                edited: false
             };
 
             addTaskToDOM(task);
@@ -115,6 +121,19 @@ function addTaskToDOM(task) {
         }
     });
 
+    function toggleVisibility() {
+        const toggleElements = document.querySelectorAll('.task-item')
+        toggleElements.forEach(titleElement => {
+            if (titleElement.style.textDecoration === 'line-through') {
+                if (taskItem.style.visibility === 'hidden') {
+                    taskItem.style.visibility = 'visible';
+                } else {
+                    taskItem.style.visibility = 'hidden';
+                }
+            }
+        });
+    }
+
     iconsElement.appendChild(completeIcon);
     iconsElement.appendChild(editIcon);
     iconsElement.appendChild(deleteIcon);
@@ -161,7 +180,6 @@ function editTask(task, titleElement, descriptionElement, dateTimeElement, statu
     taskItem.appendChild(saveButton);
 
     saveButton.addEventListener("click", function () {
-        task.edited = true;
         task.title = titleInput.value;
         task.description = descriptionInput.value;
         task.date = dateInput.value;
@@ -207,8 +225,6 @@ function reorderTasks() {
     document.getElementById("task-list").innerHTML = "";
     tasks.forEach(task => addTaskToDOM(task));
 }
-
-//Фильтрация задач
 
 // Загрузка задач из localStorage
 function loadTasks() {

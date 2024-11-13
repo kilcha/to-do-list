@@ -1,5 +1,5 @@
 body {
-    background-color: #222;
+    background-color: #888888;
 }
 
 .container {
@@ -143,21 +143,13 @@ button:hover {
     color: #f1c40f;
 }
 
-.filter-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.filter-container i {
+.toggle-icon {
     font-size: 24px;
-    color: #fff;
     cursor: pointer;
-}
-
-.filter-container i:hover {
-    color: #4CAF50;
+    color: green;
+    user-select: none;
+    display: inline-block;
+    margin: 10px;
 }
 
 @keyframes slideDown {
