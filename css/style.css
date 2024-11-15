@@ -152,6 +152,20 @@ button:hover {
     margin: 10px;
 }
 
+#hideCompletedBtn {
+    background-color: #FF6347;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#hideCompletedBtn:hover {
+    background-color: #FF4500;
+}
+
 @keyframes slideDown {
     0% {
         opacity: 0;
@@ -160,5 +174,60 @@ button:hover {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+
+#task-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+    /* Уменьшаем ширину контейнера */
+    .container {
+        max-width: 100%;
+        margin: 20px;
+        padding: 15px;
+    }
+
+    /* Делаем элементы ввода и кнопку на всю ширину */
+    input, textarea, button {
+        width: 100%;
+        margin: 8px 0;
+        font-size: 14px;
+    }
+
+    /* Уменьшаем размер шрифта для заголовка и кнопок */
+    .container h2 {
+        font-size: 22px;
+    }
+
+    button {
+        padding: 10px;
+    }
+
+    /* Стиль для задачи */
+    .task-item {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .task-title {
+        font-size: 16px;
+    }
+
+    .task-description {
+        font-size: 14px;
+    }
+
+    .task-date-time, .task-status {
+        font-size: 12px;
+    }
+
+    .task-icons {
+        font-size: 16px;
+        gap: 10px;
     }
 }

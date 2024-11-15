@@ -1,13 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     loadTasks();  // Загружаем задачи из localStorage при загрузке страницы
 
-    const icon = document.createElement("span");
-    icon.textContent = "✔";
-    icon.classList.add("toggle-icon");
-    
-    icon.addEventListener("click", toggleVisibility);
-    document.body.insertBefore(icon, document.body.firstChild);
-
     // Добавление новой задачи
     document.getElementById("addTaskBtn").addEventListener("click", function () {
         const taskTitle = document.getElementById("taskTitle").value;
@@ -121,19 +114,6 @@ function addTaskToDOM(task) {
         }
     });
 
-    function toggleVisibility() {
-        const toggleElements = document.querySelectorAll('.task-item')
-        toggleElements.forEach(titleElement => {
-            if (titleElement.style.textDecoration === 'line-through') {
-                if (taskItem.style.visibility === 'hidden') {
-                    taskItem.style.visibility = 'visible';
-                } else {
-                    taskItem.style.visibility = 'hidden';
-                }
-            }
-        });
-    }
-
     iconsElement.appendChild(completeIcon);
     iconsElement.appendChild(editIcon);
     iconsElement.appendChild(deleteIcon);
@@ -193,6 +173,27 @@ function editTask(task, titleElement, descriptionElement, dateTimeElement, statu
         taskItem.removeChild(saveButton);
     });
 }
+
+// Функция для скрытия выполненных задач
+function hideCompletedTasks() {
+    const completedTasks = document.querySelectorAll('.task-item.completed');
+    completedTasks.forEach(task => {
+        task.style.display = task.style.display === 'none' ? 'block' : 'none';
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const hideCompletedBtn = document.getElementById('hideCompletedBtn');
+    hideCompletedBtn.addEventListener('click', hideCompletedTasks);
+
+    // Находим все кнопки для отметки задачи как выполненной и добавляем обработчик
+    document.getElementById("task-list").addEventListener("click", function(event) {
+        if (event.target.classList.contains("fa-check")) {
+            const taskItem = event.target.closest(".task-item");
+            taskItem.classList.toggle("completed"); // Добавляем или убираем класс "completed"
+        }
+    });
+});
 
 // Сохранение задачи в localStorage
 function saveTaskToLocalStorage(task) {
