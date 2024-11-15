@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 date: taskDate,
                 time: taskTime,
                 status: "",
-                completed: false
+                completed: false,
             };
 
             addTaskToDOM(task);
@@ -173,6 +173,27 @@ function editTask(task, titleElement, descriptionElement, dateTimeElement, statu
         taskItem.removeChild(saveButton);
     });
 }
+
+// Функция для скрытия выполненных задач
+function hideCompletedTasks() {
+    const completedTasks = document.querySelectorAll('.task-item.completed');
+    completedTasks.forEach(task => {
+        task.style.display = task.style.display === 'none' ? 'block' : 'none';
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const hideCompletedBtn = document.getElementById('hideCompletedBtn');
+    hideCompletedBtn.addEventListener('click', hideCompletedTasks);
+
+    // Находим все кнопки для отметки задачи как выполненной и добавляем обработчик
+    document.getElementById("task-list").addEventListener("click", function(event) {
+        if (event.target.classList.contains("fa-check")) {
+            const taskItem = event.target.closest(".task-item");
+            taskItem.classList.toggle("completed"); // Добавляем или убираем класс "completed"
+        }
+    });
+});
 
 // Сохранение задачи в localStorage
 function saveTaskToLocalStorage(task) {
